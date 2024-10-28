@@ -37,6 +37,7 @@ async function bootstrap() {
     .setVersion(version)
     .setContact(authorInfo[0], authorInfo[1], authorInfo[2])
     .setLicense(licenseInfo[0], licenseInfo[1])
+    .addBearerAuth()
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);

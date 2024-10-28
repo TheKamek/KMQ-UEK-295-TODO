@@ -14,6 +14,7 @@ export class UserInfoDto {
     example: 'user',
   })
   username: string;
+  roles: string[];
 }
 // this class will get back from the api. without any password
 export class UserReturnDto extends UserInfoDto {

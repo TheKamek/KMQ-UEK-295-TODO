@@ -1,4 +1,4 @@
-import { isBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 export class UpdateTodoDto {
   @IsString()
   description?: string;

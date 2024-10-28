@@ -100,7 +100,7 @@ export class TodoService {
     return todos.map((todo) => this.transformToReturnDto(todo));
   }
 
-  private transformToReturnDto(todo: Todo): ReturnTodoDto {
+  public transformToReturnDto(todo: Todo): ReturnTodoDto {
     return {
       id: todo.id,
       title: todo.title,
@@ -117,7 +117,6 @@ export class TodoService {
       })
       .orderBy('todo.id', 'DESC')
       .getMany();
-
     return todos.map((todo) => this.transformToReturnDto(todo));
   }
 

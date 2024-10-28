@@ -26,4 +26,3 @@ export class AuthModule implements NestModule {
     consumer.apply(LoggerMiddleware).forRoutes(AuthController, ProfileController);
   }
 }
-

@@ -19,10 +19,12 @@ import { UpdateTodoDto } from './DTO/update-todo.dto';
 import { ReturnTodoDto } from './DTO/return-todo.dto';
 import { JwtAuthGuard } from '../sample/modules/auth/guards/jwt-auth.guard';
 import { CurrentUser } from '../sample/decorators/current-user/current-user.decorator';
-import { UserDto } from '../users/user.dto/user.dto';
 import { UserInfoDto } from '../sample/generic.dtos/userDtoAndEntity';
 import { UserService } from '../sample/modules/auth/user.service/user.service';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Todo')
+@ApiBearerAuth()
 @Controller('todo')
 export class TodoController {
   constructor(

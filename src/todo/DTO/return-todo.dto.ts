@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
+import { IsNumber } from 'class-validator';
 export class ReturnTodoDto {
   @IsNumber()
   id: number;
