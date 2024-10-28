@@ -1,0 +1,45 @@
+stages:
+  - lint
+  - unit-test
+  - e2e-test
+  - build
+
+lint:
+  stage: lint
+  image: node:18-alpine
+  tags:
+    - docker
+  script:
+    - npm ci
+    - npm run lint
+
+unit-test:
+  stage: unit-test
+  image: node:18-alpine
+  tags:
+    - docker
+  script:
+    - npm ci
+    - echo "Running unit tests"
+    - 'if [ "$TEST_MODE" = "template" ]; then npm run test-template:cov; else npm run test-todo:cov; fi'
+
+e2e-test:
+  stage: e2e-test
+  image: node:18-alpine
+  tags:
+    - docker
+  script:
+    - npm ci
+    - echo "Running e2e tests"
+    - 'if [ "$TEST_MODE" = "template" ]; then npm run test-template:e2e; else npm run test-todo:e2e; fi'
+
+build:
+  stage: build
+  image: node:18-alpine
+  tags:
+    - docker
+  script:
+    - npm ci
+    - echo "Running npm build"
+    - npm run build
+
