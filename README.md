@@ -1,6 +1,6 @@
 # Description
 
-ICT-UEK 295 Prüfungsvorlage.
+ICT-UEK 295 Prüfung von Ivo Kamek.
 
 ## Test
 
@@ -24,22 +24,25 @@ $ npm run test-todo:cov
 Hier kommt deine Projektplanung hin
 
 ### Projektinformationen
-Projektname: 
-Projektdauer: 
-Ersteller: 
+Projektname: Todo-App
+Projektdauer: 2 Tage
+Ersteller: Ivo Kamek Krämer
 
 ### Vorgehen / Aufgaben-tabelle
 
-| Aufgabe | soll Zeit | aufwand / h  | ist aufwand /h |
-|-------|------------|--------------|----------------|
-| ....  |            |              |                |
-|       |            |              |                |
-|       |            |              |                |
-|       |            |              |                |
-|       |            |              |                |
-|       |            |              |                |
-|       |            |              |                |
-etc.
+| Aufgabe                                         | soll Zeit | aufwand / h | ist aufwand /h |
+|-------------------------------------------------|-----------|-------------|----------------|
+| Zeitplan erstellen                              | 30 min    |             |                |
+| Package.json bearbeiten                         | 10min     |             |                |
+| SqlIte Datenbank aufsetzen und DTO Files machen | 30min     |             |                |
+| Swagger API Dokumentation                       | 30 min    |             |                |
+| Security.env erstellen                          | 10min     |             |                |
+| Alle/ein Item lesen                             | 1.5h      |             |                |
+| Item anlegen und anpassen                       | 1.5h      |             |                |
+| Item ersetzen und löschen                       | 1.5h      |             |                |
+| JWT implementieren                              | 1.5h      |             |                |
+| Testing und Bugfixing                           | 3h        |             |                |  
+| Linter fixing                                   | 30min     |             |                |
 
 ## Fazit
 .... hier kommt dein Fazit zur Aufgabe rein
