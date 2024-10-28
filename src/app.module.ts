@@ -1,17 +1,15 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
+import { UsersModule } from './users/users.module';
+import { TodoModule } from './todo/todo.module';
 import { LoggerMiddleware } from './sample/midleware/logger.middleware';
-import { ArticleModule } from './sample/modules/article/article.module';
 import { AuthModule } from './sample/modules/auth/auth.module';
-import { RootModule } from './sample/modules/root/root.module';
 import { ResetModule } from './sample/modules/reset/reset.module';
 
 @Module({
   imports: [
-    ArticleModule,
     AuthModule,
-    RootModule,
+    TodoModule,
     ResetModule,
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
@@ -25,6 +23,7 @@ import { ResetModule } from './sample/modules/reset/reset.module';
         synchronize: true,
       }),
     }),
+    UsersModule,
   ],
 })
 export class AppModule implements NestModule {
@@ -32,3 +31,4 @@ export class AppModule implements NestModule {
     consumer.apply(LoggerMiddleware).forRoutes();
   }
 }
+
