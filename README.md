@@ -30,19 +30,19 @@ Ersteller: Ivo Kamek Krämer
 
 ### Vorgehen / Aufgaben-tabelle
 
-| Aufgabe                                         | soll Zeit | aufwand / h | ist aufwand /h |
-|-------------------------------------------------|-----------|-------------|----------------|
-| Zeitplan erstellen                              | 30 min    |             |                |
-| Package.json bearbeiten                         | 10min     |             |                |
-| SqlIte Datenbank aufsetzen und DTO Files machen | 30min     |             |                |
-| Swagger API Dokumentation                       | 30 min    |             |                |
-| Security.env erstellen                          | 10min     |             |                |
-| Alle/ein Item lesen                             | 1.5h      |             |                |
-| Item anlegen und anpassen                       | 1.5h      |             |                |
-| Item ersetzen und löschen                       | 1.5h      |             |                |
-| JWT implementieren                              | 1.5h      |             |                |
-| Testing und Bugfixing                           | 3h        |             |                |  
-| Linter fixing                                   | 30min     |             |                |
+| Aufgabe                                         | aufwand / h | ist aufwand / h |
+|-------------------------------------------------|-----------|----------------|
+| Zeitplan erstellen                              | 30 min    |                |
+| Package.json bearbeiten                         | 10min     |                |
+| SqlIte Datenbank aufsetzen und DTO Files machen | 30min     |                |
+| Swagger API Dokumentation                       | 30 min    |                |
+| Security.env erstellen                          | 10min     |                |
+| Alle/ein Item lesen                             | 1.5h      |                |
+| Item anlegen und anpassen                       | 1.5h      |                |
+| Item ersetzen und löschen                       | 1.5h      |                |
+| JWT implementieren                              | 1.5h      |                |
+| Testing und Bugfixing                           | 3h        |                |  
+| Linter fixing                                   | 30min     |                |
 
 ## Fazit
 .... hier kommt dein Fazit zur Aufgabe rein
