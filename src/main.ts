@@ -26,11 +26,7 @@ const licenseInfo = module.exports.license.split('|');
 
 async function bootstrap() {
   const logger = new Logger('bootstrap');
-
-  // enable CORS
   const app = await NestFactory.create(AppModule, { cors: true });
-
-  // hint: Hier kommt die openApi Konfiguration hin
   const config = new DocumentBuilder()
     .setTitle(name)
     .setDescription(description)
