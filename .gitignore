@@ -38,7 +38,5 @@ lerna-debug.log*
 *.sqlite
 *.db
 
-# wenn du diese Datei mitliefern musst, dann kommentiere doch die nächste Zeile aus
-# Hier geht es darum, ob du verstehst für was diese Datei vorhanden ist.
-.env
+
 

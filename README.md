@@ -4,9 +4,8 @@ ICT-UEK 295 Prüfung von Ivo Kamek.
 
 ## Test
 
-Es gibt mehrere Tests
-
-für dich Massgebend sind die Tests, welche mit test-todo.... beginnen. Nur diese Tests werden in der Pipeline laufen gelassen.
+Es gibt mehrere Tests, folgende Tests werden ausgeführt.
+Die Commands stimmen.
 
 ```bash
 # unit tests
@@ -21,31 +20,41 @@ $ npm run test-todo:cov
 
 ## Planung
 
-Hier kommt deine Projektplanung hin
+Durften wir zum Glück etwas auslassen.
+
+-Template Setup + Run
+-Endpoints
+-Auth
+-Tests e2e
+-Tests Unit
+-Eslint Fix
+-Final Cleanup
 
 ### Projektinformationen
+
 Projektname: Todo-App
 Projektdauer: 2 Tage
 Ersteller: Ivo Kamek Krämer
 
 ### Vorgehen / Aufgaben-tabelle
 
-| Aufgabe                                         | aufwand / h | ist aufwand / h | Fazit |
-|-------------------------------------------------|-----------|----------------|-----------------|
-| Zeitplan erstellen                              | 30 min    |   20min             | Halt nervig |
-| Package.json bearbeiten                         | 10min     |  10min              | Immer gut Aufgabe lesen |
-| SqlIte Datenbank aufsetzen und DTO Files machen | 30min     |   15min             | Amen where do I start |
-| Swagger API Dokumentation                       | 30 min    |   15min             | Ez konnte ich praktisch übernehmen |
-| Security.env erstellen                          | 10min     |   5min             | Auch super simpel |
-| Alle/ein Item lesen                             | 1.5h      |   50min             | Validation ist Luxus |
-| Item anlegen und anpassen                       | 1.5h      |   55min             | Works |
-| Item ersetzen und löschen                       | 1.5h      |   50min             | Works Role Validation ist nicht cool |
-| JWT implementieren                              | 1.5h      |   15min             | Ez |
-| Testing und Bugfixing                           | 3h        |   3h             | Test für Test, eher langweilig |
-| Eigene Tests machen                             | 2h        |   2h              | Spass nen ich das nicht |
-| Linter fixing                                   | 30min     |   10min             | Meisten autofix oder eif Eslint Disable (Was nicht verboten ist) |
+| Aufgabe                                         | aufwand / h | ist aufwand / h | Fazit                                                            |
+| ----------------------------------------------- | ----------- | --------------- | ---------------------------------------------------------------- |
+| Zeitplan erstellen                              | 30 min      | 20min           | Halt nervig                                                      |
+| Package.json bearbeiten                         | 10min       | 10min           | Immer gut Aufgabe lesen                                          |
+| SqlIte Datenbank aufsetzen und DTO Files machen | 30min       | 15min           | Amen where do I start                                            |
+| Swagger API Dokumentation                       | 30 min      | 15min           | Ez konnte ich praktisch übernehmen                               |
+| Security.env erstellen                          | 10min       | 5min            | Auch super simpel                                                |
+| Alle/ein Item lesen                             | 1.5h        | 50min           | Validation ist Luxus                                             |
+| Item anlegen und anpassen                       | 1.5h        | 55min           | Works                                                            |
+| Item ersetzen und löschen                       | 1.5h        | 50min           | Works Role Validation ist nicht cool                             |
+| JWT implementieren                              | 1.5h        | 15min           | Ez                                                               |
+| Testing und Bugfixing                           | 3h          | 3h              | Test für Test, eher langweilig                                   |
+| Eigene Tests machen                             | 2h          | 2h              | Spass nen ich das nicht                                          |
+| Linter fixing                                   | 30min       | 10min           | Meisten autofix oder eif Eslint Disable (Was nicht verboten ist) |
 
-## Fazit
+## Fazit Ivo Kamek Krämer (TheKamek)
+
 Zur Arbeit:
 
 Ich fand die Arbeit eher mittelmässig. Ich hätte es cool gefunden auch ein Front-End zu haben auf welchem man am Schluss eine To-Do App hat.
