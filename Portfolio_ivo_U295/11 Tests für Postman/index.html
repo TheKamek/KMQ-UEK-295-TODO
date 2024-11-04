@@ -1,0 +1,194 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40' style='overflow: auto;'><head><meta charset='utf-8'><link rel='stylesheet' type='text/css' href='https://learningview.org/app/main.css'/><link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'/><style>body{padding:32px; box-sizing: border-box; background:#eeeeee;} .task{margin:16px;padding:16px;border:1px solid #eee;border-radius:4px;background:rgba(255,255,255,0.5);box-shadow:2px 2px 8px rgba(0,0,0,0.1);} .content{position:relative;margin:2px; margin-left:16px;margin-right:16px;box-sizing: border-box; text-align: center;} .content > p {text-align: left;} 
+p,ul,ol {margin:0;padding-top:0;padding-bottom:0}
+.homeBtn {
+  cursor:pointer;position:absolute;top:1em;right:1em;font-size:180%;
+  color:#666;
+}
+.homeBtn:hover {
+  color:black;
+}
+.classFolderEmoji {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.classFolderEmoji.left{
+  justify-content: flex-start;
+}
+.classFolderEmoji.right{
+  justify-content: flex-end;
+}
+.classFolderEmoji span {
+  font-size:400%;
+  padding: 0 0.1em; 
+  margin: 0 0.1em;
+  cursor:pointer;
+}
+
+.selectedEmoji {
+  border-radius:0.2em;
+  background:rgb(201 217 248);
+}
+</style>
+<script src='https://learningview.org/app/libs/jquery/jquery-2.1.1.min.js'></script>
+<script>
+MathJax = {
+  options: {
+    skipHtmlTags: [            //  HTML tags that won't be searched for math
+        'script', 'noscript', 'style', 'textarea', 'pre',
+        'code', 'annotation', 'annotation-xml'
+    ],
+    ignoreHtmlClass: 'ng-wig-editable'
+  },
+  tex: {
+    inlineMath: [['$$', '$$']],
+    displayMath: [['$$$','$$$']],
+    processEnvironments:false
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+
+  var customIcons = {};
+  var customIconsStyle = null;
+  function customIcon(iconString){
+    if(iconString && iconString.indexOf && iconString.indexOf("ci") === 0){
+      var parts = iconString.split("-");
+      var user = parts[1];
+      var icon = parts[2];
+      if(!customIcons[user]) customIcons[user] = {};
+      if(!customIcons[user][icon]) {
+        // build custom css now
+        var s = "";
+        if(!customIconsStyle){
+          customIconsStyle = document.createElement("style");
+          document.head.append(customIconsStyle);
+          customIconsStyle.textContent = "";
+        }
+        customIconsStyle.textContent += ".ci-"+user+"-"+icon+":before { background-image:url('https://learningview.org/customIcons/"+user+"/"+icon+".png') }";
+        customIcons[user][icon] = 1;
+      }
+    }
+    return iconString;
+  }
+  function overview(){
+    var parts = window.location.href.split('/');
+    var last = parts.pop();
+    if(last == "index.html") parts.pop();
+    window.location.href = parts.join('/')+"/index.html";
+  }
+  function openItem(id){
+    var parts = window.location.href.split('/');
+    if(parts[parts.length-1] == "index.html") parts.pop();
+    window.location.href = parts.join('/')+'/'+id+"/index.html";
+  }
+  function addPinchZoom(element){
+        var zoomScale = 1.0;
+        element.css({"user-select":"none"});
+        element.attr("draggable","false");
+        var zoom = null;
+        var btn = null;
+
+        function createOverlay(e){
+          var w = element.get(0).naturalWidth;
+          var h = element.get(0).naturalHeight;
+          if(!zoom){
+            zoom = $('<div style="position:fixed;user-select:none;top:0;left:0;overflow:auto;left:0;top:0;width:100%;height:100%; background: white;z-index:99;text-align:center"><div style="display:inline-block;position:relative"><img class="largeImage" draggable="false" style="pointer-events:none" /><img class="largeImageOverlay" draggable="false" style="pointer-events:none;position:absolute;width:100%;height:100%;top:0;left:0"></div></div>');
+            $(".largeImage",zoom).attr("src",element.attr("src"));
+            var o = $(element).parent().find(".overlay");
+            if(o && o.length > 0)
+              $(".largeImageOverlay",zoom).attr("src",$(element).parent().find(".overlay").attr("src"));
+
+            $("body").append(zoom);
+            zoom.scrollTop(0);
+            zoom.scrollLeft(0);
+            $(".fa-times",btn).show();
+            $(".fa-search-minus",btn).show();
+
+            var px = element.offset().left;
+            var py = element.offset().top;
+            btn.css({position:"fixed", left:"auto", right:"1vw", top:"1vh"});
+            zoom.append(btn);
+
+          }
+
+          var img = $("img",zoom);
+          var w = element.get(0).naturalWidth*(zoomScale);
+          var h = element.get(0).naturalHeight*(zoomScale);
+          img.css("width",w+"px");
+          img.css("height",h+"px");
+          e.preventDefault();
+        };
+
+        var zoomPanel = false;
+        element.on("click",function(e){
+          if(!zoomPanel){
+            btn = $('<div style="display: flex;pointer-events: auto;position:absolute;z-index: 100;padding:8px;background:rgba(255,255,255,0.5);border-radius:4px;box-shadow:0 0 10px rgba(0,0,0,0.2)"><i style="display:none;cursor:pointer;font-size:32px;margin-right:4px" class="fa fa-fw fa-search-minus"></i><i style="cursor:pointer;font-size:32px;margin-left:4px" class="fa fa-fw fa-search-plus"></i><i style="display:none;cursor:pointer;font-size:32px;margin-left:4px;color:red" class="fa fa-fw fa-times"></i></div>');
+            element.parent().append(btn);
+            var px = element.offset().left - element.parent().offset().left + element.parent().scrollLeft();
+            var py = element.offset().top - element.parent().offset().top + element.parent().scrollTop();
+            var clickX = e.offsetX;
+            var clickY = e.offsetY;
+            var keep1onZoom = false;
+            if(element.get(0).naturalWidth > element.width()*1.1 ||
+               element.get(0).naturalHeight > element.height()*1.1){
+              keep1onZoom = true;
+            }
+            btn.css({top:(py-32+clickY)+"px", left:(px-32+clickX)+"px"});
+            btn.on("click",function(e){e.stopPropagation();});
+            zoomScale = 1.0;
+            $(".fa-search-minus",btn).on("click",function(){
+              if(zoomScale == 1.0) zoomScale = 0.6;
+              zoomScale = zoomScale * 0.8;
+              if(zoomScale < 0.1) zoomScale = 0.1;
+              if(keep1onZoom){
+                zoomScale = 1.0;
+                keep1onZoom = false;
+              }
+              createOverlay(e);
+            });
+            $(".fa-search-plus",btn).on("click",function(){
+              if(zoomScale == 1.0) zoomScale = 1.4;
+              zoomScale = zoomScale * 1.2;
+              if(zoomScale > 8.0) zoomScale = 8.0;
+              if(keep1onZoom){
+                zoomScale = 1.0;
+                keep1onZoom = false;
+              }
+              createOverlay(e);
+            });
+            $(".fa-times",btn).on("click",function(){
+              if(btn) btn.remove();
+              btn = null;
+              if(zoom) zoom.remove();
+              zoom = null;
+              zoomPanel = false;
+            });
+            zoomPanel = true;
+            setTimeout(function(){
+              $(document).one("click",function(){
+                if(!zoom){
+                  if(btn) btn.remove();
+                  btn = null;
+                  zoomPanel = false;
+                }
+              });
+            },100);
+            return;
+          }else{
+            if(btn) btn.remove();
+            btn = null;
+            zoomPanel = false;
+            return;
+          }
+        });
+}
+
+</script>
+    <link rel='stylesheet' href='https://learningview.org/app/libs/Material-Design-Iconic-Font/css/material-design-iconic-font.min.css'>
+    <link rel='stylesheet' href='https://learningview.org/app/libs/fontelico/fontelico.css'>
+    <script src='https://learningview.org/MathJax/es5/tex-svg.js'></script>
+</head>
+<body style='height:auto;font-family:Arial;overflow: auto;'><div style='page-break-after: always;position:relative;padding:1em;padding-bottom:2em;box-sizing:border-box; max-width: 600px; margin: auto;background: rgba(255,255,255,0.5); margin-top: 1em; margin-bottom: 1em; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);'><div class='homeBtn' onclick='overview()'><i class='fa fa-fw fa-th'></i></div> <h1 style='padding:8px;margin-left:8px;margin-right:56px;margin-top:0'>Tests für Postman</h1><div class="task"><div style="display:flex;position:relative;padding-bottom:6px"><div style="flex-shrink: 0; margin: 2px; width: 60px; height: 60px; border: 4px solid white; box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px; margin-right:16px; display:flex;justify-content:center;align-items:center;background:#ffbf00"><i style="font-size:32px;display:block;color:white" class="fa fa-pencil"></i></div><div style="width: 100%;"><h2 style="font-weight:400;margin-top:6px;margin-bottom:0.5em">Test schreiben</h2><p>Schreibe Tests</p></div></div></div><div class="content"><div class='htmlContent' style='padding: 10px 4px 11px;text-align:left;'><h3>1. <strong>Zugriff auf einen geschützten Endpunkt ohne Authentifizierung (leerer Bearer-Token)</strong></h3><ul><li>Ohne Token auf geschützten Bereich zugreifen.<br><br>pm.test(Status is 401 Unauthorized", function() {<br>pm.response.to.have.status(401);<br>pm.response.to.have.jsonBody("statusCode", 401);<br>});</li></ul><p><br></p><h3>2. <strong>Anmeldung auf der API und Token zurückbekommen</strong></h3><ul><li>Meldet sich an und speichert denn Token<br><br><ul><li>pm.test("Status is 200 OK", function() {<br>pm.response.to.have.status(200);<br>});</li><li>let jsonData = pm.response.json();<br>pm.environment.set("access_token", jsonData.access_token);</li></ul></li></ul><h3>3. <strong>Zugriff auf eine geschützte Ressource mit dem Token</strong></h3><ul><li>Gültiger Token für Geschützte Ressource<br>pm.test("Status is 200 OK", function() {<br>pm.response.to.have.status(200);<br>});</li><li></li></ul></div></div></div></body></html>
